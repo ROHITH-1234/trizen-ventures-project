@@ -52,7 +52,8 @@ const Header = ({ onSearch }) => {
   const fetchSuggestions = async (query) => {
     try {
       // Connect to backend API for search
-      const response = await fetch(`http://localhost:5000/api/search?q=${encodeURIComponent(query)}`);
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${API_URL}/search?q=${encodeURIComponent(query)}`);
       const result = await response.json();
       
       if (result.success && result.data) {
