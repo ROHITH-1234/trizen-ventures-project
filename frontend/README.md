@@ -159,6 +159,9 @@ npm run build
 ### Shopping Cart
 ![Cart Interface](image-4.png)
 
+### 🎬 Demo Video
+[▶️ Watch Full Demo on Google Drive](https://drive.google.com/file/d/12DSkHz4-ggFBb0n1TIvEN3cvVYemnfa-/view?usp=sharing)
+
 ---
 
 ## 🎯 Micro-interactions
