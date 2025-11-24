@@ -213,9 +213,3 @@ fetch(`${API_BASE_URL}/search?q=${query}`)
 ```
 
 ---
-
-## 📞 Support
-
-For issues or questions, contact: nukaraju@trizenventures.com
-
-**Trizen Ventures** - From Vision to Venture 🚀
