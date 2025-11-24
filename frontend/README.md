@@ -142,3 +142,33 @@ npm run build
 ```
 
 2. Deploy the `dist/` folder to your hosting service
+
+---
+
+## 📸 UI Preview
+
+### Desktop View
+![Desktop Homepage](image-1.png)
+
+### Product Listing
+![Product Grid](image-2.png)
+
+### Search & Filters
+![Search Feature](image-3.png)
+
+### Shopping Cart
+![Cart Interface](image-4.png)
+
+---
+
+## 🎯 Micro-interactions
+
+- **Button Ripple Effects** - Click feedback on all buttons
+- **Card Lift Animation** - Products lift on hover
+- **Cart Shake Animation** - Cart icon shakes when adding items
+- **Price Flip Animation** - Prices flip when sorting
+- **Smooth Scrolling** - Category clicks scroll to products
+
+---
+
+Made with ❤️ by **Trizen Ventures**
