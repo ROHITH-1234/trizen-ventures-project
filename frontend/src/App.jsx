@@ -18,6 +18,11 @@ function App() {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
+    // Scroll to products section when category changes
+    const productsSection = document.getElementById('products-section');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   const handlePriceRangeChange = (range) => {
@@ -41,7 +46,7 @@ function App() {
         <Cart />
 
       {/* Main Content */}
-      <div className="w-full py-4 md:py-8">
+      <div id="products-section" className="w-full py-4 md:py-8">
         <div className="w-full px-2 sm:px-4 md:px-6 lg:px-6 xl:px-8">
           <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8">
             {/* Filters Sidebar - Tablet & Desktop */}
@@ -68,7 +73,12 @@ function App() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 flex-wrap">
                       <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 truncate">
-                        {searchQuery ? `Results for "${searchQuery}"` : 'All Products'}
+                        {searchQuery 
+                          ? `Results for "${searchQuery}"` 
+                          : selectedCategory !== 'All' 
+                            ? selectedCategory 
+                            : 'All Products'
+                        }
                       </h2>
                       {searchQuery && (
                         <button

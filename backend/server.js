@@ -19,7 +19,13 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 // Database connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/trizen-ventures';
 
-mongoose.connect(MONGODB_URI)
+// MongoDB connection options to handle SSL/TLS issues
+const mongooseOptions = {
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+};
+
+mongoose.connect(MONGODB_URI, mongooseOptions)
   .then(() => {
     console.log('✅ Connected to MongoDB successfully');
     console.log(`📊 Database: ${mongoose.connection.name}`);

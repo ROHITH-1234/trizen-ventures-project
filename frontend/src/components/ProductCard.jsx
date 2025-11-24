@@ -4,10 +4,19 @@ import { useCart } from '../context/CartContext';
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
   const [isAdding, setIsAdding] = useState(false);
+  const [priceKey, setPriceKey] = useState(0);
 
   const handleAddToCart = () => {
     setIsAdding(true);
     addToCart(product);
+    
+    // Trigger cart icon shake animation
+    const cartIcon = document.querySelector('.cart-icon-shake');
+    if (cartIcon) {
+      cartIcon.classList.add('animate-shake');
+      setTimeout(() => cartIcon.classList.remove('animate-shake'), 600);
+    }
+    
     setTimeout(() => setIsAdding(false), 600);
   };
 
@@ -51,7 +60,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 md:hover:-translate-y-2 cursor-pointer">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer card-hover-lift">
       {/* Product Image */}
       <div className="relative overflow-hidden bg-gray-100 h-48 sm:h-52 md:h-56 lg:h-64">
         <img
@@ -98,7 +107,7 @@ const ProductCard = ({ product }) => {
 
         {/* Price */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <span className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
+          <span key={priceKey} className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 animate-price-flip">
             ₹{product.price.toLocaleString()}
           </span>
           {product.originalPrice && (
@@ -112,7 +121,7 @@ const ProductCard = ({ product }) => {
         <button 
           onClick={handleAddToCart}
           disabled={isAdding}
-          className={`w-full font-semibold py-2 sm:py-2.5 md:py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base ${
+          className={`w-full font-semibold py-2 sm:py-2.5 md:py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base btn-ripple ${
             isAdding 
               ? 'bg-green-500 text-white' 
               : 'bg-orange-500 hover:bg-orange-600 text-white transform hover:scale-105 active:scale-95'

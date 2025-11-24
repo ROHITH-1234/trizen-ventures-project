@@ -5,8 +5,9 @@ const ProductsGrid = ({ searchQuery, selectedCategory, priceRange, sortBy }) => 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [priceKey, setPriceKey] = useState(0);
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL;
+  const API_BASE_URL = 'http://localhost:5000/api';
 
   useEffect(() => {
     fetchProducts();
@@ -54,9 +55,12 @@ const ProductsGrid = ({ searchQuery, selectedCategory, priceRange, sortBy }) => 
         switch (sortBy) {
           case 'price-low':
             filteredProducts.sort((a, b) => a.price - b.price);
+            // Trigger price flip animation
+            setPriceKey(prev => prev + 1);
             break;
           case 'price-high':
             filteredProducts.sort((a, b) => b.price - a.price);
+            setPriceKey(prev => prev + 1);
             break;
           case 'rating':
             filteredProducts.sort((a, b) => b.rating - a.rating);
@@ -118,7 +122,7 @@ const ProductsGrid = ({ searchQuery, selectedCategory, priceRange, sortBy }) => 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
       {products.map(product => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={`${product.id}-${priceKey}`} product={product} />
       ))}
     </div>
   );

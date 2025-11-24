@@ -142,5 +142,3 @@ npm run build
 ```
 
 2. Deploy the `dist/` folder to your hosting service
-
----

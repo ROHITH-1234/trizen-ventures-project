@@ -52,8 +52,7 @@ const Header = ({ onSearch }) => {
   const fetchSuggestions = async (query) => {
     try {
       // Connect to backend API for search
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-      const response = await fetch(`${API_URL}/search?q=${encodeURIComponent(query)}`);
+      const response = await fetch(`http://localhost:5000/api/search?q=${encodeURIComponent(query)}`);
       const result = await response.json();
       
       if (result.success && result.data) {
@@ -258,7 +257,7 @@ const Header = ({ onSearch }) => {
               className="text-white hover:text-yellow-300 transition-all duration-300 relative flex items-center gap-1 group transform hover:scale-110" 
               onClick={() => setIsCartOpen(true)}
             >
-              <div className="relative">
+              <div className="relative cart-icon-shake">
                 <CartIcon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 group-hover:animate-pulse" />
                 {getCartCount() > 0 && (
                   <span className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 bg-yellow-400 text-blue-900 text-[10px] sm:text-xs font-bold rounded-full min-w-3.5 h-3.5 sm:min-w-4 sm:h-4 lg:min-w-5 lg:h-5 flex items-center justify-center px-0.5 sm:px-1 shadow-lg animate-bounce">
